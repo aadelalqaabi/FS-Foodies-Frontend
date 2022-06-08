@@ -17,16 +17,21 @@ function Nav() {
             Categories
           </NavLink>
         </div>
-        <div className="navitem-right" >
+        < div className="navitem-right" >
           <NavLink className="navitem " to="/user-page">
               <img src=""/>
             Profile
           </NavLink>
-        </div>
-        <div>
-         
-        </div>
-      </div>
+
+          
+          <NavLink className="navitem " to="/recipe">
+            Recipe
+          </NavLink>
+          </div>
+          </div>
+      
+       
+   
     </nav>
   );
 }

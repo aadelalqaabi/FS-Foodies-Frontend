@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { observer } from "mobx-react";
 import recipeStore from "../../stores/recipesStore";
 import categoriesStore from "../../stores/categoriesStore";
-import RecipeCategoryScroll from "../Recipes/RecipeCategoryScroll";
 import IngredientsList from "../Ingredients/IngredientsList";
 
 function AddRecipe() {
@@ -42,8 +41,10 @@ function AddRecipe() {
 
   return (
     <div>
+
       <div className=" center ">
         <div className="container">
+       
           <h1 style={{ color: " #006d77" }}>Create New Recipe</h1>
 
           <label style={{ color: " #006d77" }} className="category-section">
@@ -85,7 +86,12 @@ function AddRecipe() {
           </label>
 
           <div className="Recipecategoriescarousel">{categoriesList}</div>
-
+        
+          <label style={{ color: " #006d77" }} className="category-section">
+            Choose Your Categories: {chosenCategory}{" "}
+          </label>
+          <IngredientsList />
+          
           <div>
             <button className="add-btn" onClick={handleSubmit}>
               Submit
@@ -95,7 +101,7 @@ function AddRecipe() {
         </div>
       </div>
       <div>
-        <IngredientsList />
+       
       </div>
     </div>
   );

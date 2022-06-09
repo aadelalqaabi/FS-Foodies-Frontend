@@ -22,7 +22,7 @@ class RecipesStore {
   fetchRecipes = async () => {
     try {
       const response = await instance.get("/recipes");
-      this.products = response.data;
+      this.recipes = response.data;
     } catch (error) {
       console.log("RecipeStore -> fetchRecipes -> error", error);
     }

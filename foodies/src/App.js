@@ -12,7 +12,9 @@ function App() {
     <div>
       <Nav />
       <Routes>
+       
         <Route path="/CategoriesList" element={<CategoriesList />}></Route>
+
         <Route path="/recipe" element={<AddRecipe />} />
       </Routes>
     </div>

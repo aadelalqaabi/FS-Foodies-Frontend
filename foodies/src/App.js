@@ -9,9 +9,9 @@ function App() {
   return (
     <div>
       <Nav />
-      <AddRecipe/>
+     
       <Routes>
-      <Route path="/recipes" element={<AddRecipe/>} />
+      <Route path="/recipe" element={<AddRecipe/>} />
 
       </Routes>
     </div>

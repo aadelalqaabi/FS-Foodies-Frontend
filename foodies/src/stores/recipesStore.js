@@ -9,6 +9,8 @@ class RecipesStore {
 
   createRecipe = async (categoryId, newRecipe) => {
     try {
+      console.log(newRecipe, " store: new recipe")
+      console.log(categoryId, " store: categoryId")
       const response = await instance.post(`/${categoryId}/recipes`, newRecipe);
       this.recipes.push(response.data);
     } catch (error) {
@@ -24,7 +26,7 @@ class RecipesStore {
       const response = await instance.get("/recipes");
       this.recipes = response.data;
     } catch (error) {
-      console.log("RecipeStore -> fetchRecipes -> error", error);
+      console.log("RecipeStore-> fetchRecipes-> error", error);
     }
   };
 
@@ -38,7 +40,7 @@ class RecipesStore {
         recipe._id === recipeId ? res.data : recipe
       );
     } catch (error) {
-      console.log("RecipeStore -> updatedRecipe -> error", error);
+      console.log("RecipeStore-> updatedRecipe-> error", error);
     }
   };
 }

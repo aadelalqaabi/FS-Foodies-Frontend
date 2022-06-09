@@ -9,7 +9,10 @@ class IngredientsStore {
 
   createIngredient = async (newIngredient) => {
     try {
-      const response = await instance.post(`/recipes/ingredient`, newIngredient);
+      const response = await instance.post(
+        `/recipes/ingredient`,
+        newIngredient
+      );
       this.ingredients.push(response.data);
     } catch (error) {
       console.log(
@@ -21,7 +24,7 @@ class IngredientsStore {
 
   fetchIngredients = async () => {
     try {
-      const response = await instance.get("/users/ingredient");
+      const response = await instance.get("/ingredient");
       this.ingredients = response.data;
     } catch (error) {
       console.log("IngredientsStore -> fetchIngredients -> error", error);

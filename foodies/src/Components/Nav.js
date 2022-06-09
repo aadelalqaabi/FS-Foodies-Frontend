@@ -17,6 +17,7 @@ function Nav() {
           </NavLink>
         </div>
         <div className="navitem-right">
+        < div className="navitem-right" >
           <NavLink className="navitem " to="/user-page">
             <img src="" />
             Profile
@@ -24,6 +25,16 @@ function Nav() {
         </div>
         <div></div>
       </div>
+
+          
+          <NavLink className="navitem " to="/recipe">
+            Recipe
+          </NavLink>
+          </div>
+      
+      
+       
+   
     </nav>
   );
 }

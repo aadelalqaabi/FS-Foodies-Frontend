@@ -2,7 +2,7 @@ import "./App.css";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Nav from "./Components/Nav";
-import IngredientsList from "./Components/IngredientsList"
+import IngredientsList from "./Components/Ingredients/IngredientsList";
 
 import CategoriesList from "./Components/Categories/CategoriesList";
 import AddRecipe from "./Components/Recipes/AddRecipe";
@@ -11,13 +11,9 @@ function App() {
   return (
     <div>
       <Nav />
-      <IngredientsList />
       <Routes>
         <Route path="/CategoriesList" element={<CategoriesList />}></Route>
-     
-      
-      <Route path="/recipe" element={<AddRecipe/>} />
-
+        <Route path="/recipe" element={<AddRecipe />} />
       </Routes>
     </div>
   );

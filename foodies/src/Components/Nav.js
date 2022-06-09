@@ -4,28 +4,25 @@ import { NavLink } from "react-router-dom";
 
 function Nav() {
   return (
-      
-    <nav >
+    <nav>
       <div className="nav">
         <div>
-        <NavLink className="navitem" to="/home">
+          <NavLink className="navitem" to="/home">
             Home
           </NavLink>
         </div>
-        <div >
-          <NavLink className="navitem" to="/cat"  >
+        <div>
+          <NavLink className="navitem" to="/CategoriesList">
             Categories
           </NavLink>
         </div>
-        <div className="navitem-right" >
+        <div className="navitem-right">
           <NavLink className="navitem " to="/user-page">
-              <img src=""/>
+            <img src="" />
             Profile
           </NavLink>
         </div>
-        <div>
-         
-        </div>
+        <div></div>
       </div>
     </nav>
   );

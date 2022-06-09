@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { observer } from "mobx-react";
-import { Button, Form, Row, Stack } from "react-bootstrap";
+//import { Button, Form, Row, Stack } from "react-bootstrap";
 import categoriesStore from "../stores/categoriesStore";
 import CategoryItem from "./CategoryItem";
 

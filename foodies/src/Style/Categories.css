@@ -77,11 +77,12 @@
 .categoryimage:hover{
     opacity: 50%;
     cursor:pointer;
+    border:10px solid #6ec200;
     transition: 0.4s;
+  
 }
 
 .categorybutton{
-    margin: 2px;
     padding: 0;
     border: 0;
     background: rgba(255, 255, 255, 0);

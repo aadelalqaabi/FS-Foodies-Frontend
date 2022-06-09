@@ -6,6 +6,7 @@ function CategoryItem({ category }) {
       <button className="categorybutton">
         <img className="categoryimage" src={category.image}></img>
       </button>
+      <h5>{category.name}</h5>
     </div>
   );
 }

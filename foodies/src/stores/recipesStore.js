@@ -9,6 +9,8 @@ class RecipesStore {
 
   createRecipe = async (categoryId, newRecipe) => {
     try {
+      console.log(newRecipe, " store: new recipe")
+      console.log(categoryId, " store: categoryId")
       const response = await instance.post(`/${categoryId}/recipes`, newRecipe);
       this.recipes.push(response.data);
     } catch (error) {

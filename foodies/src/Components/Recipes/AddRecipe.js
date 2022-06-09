@@ -2,30 +2,38 @@
 import React, { useState } from "react";
 import { observer } from "mobx-react";
 import recipeStore from "../../stores/recipesStore"
-
+import categoriesStore from "../../stores/categoriesStore";
+import RecipeCategoryScroll from "../Recipes/RecipeCategoryScroll";
 
 function AddRecipe() {
-    const [newrecipe, setNewRecipe] = useState({});
-    const categoriesList = ["breakfast", " dinner", " japness"]
-    const categories = categoriesList.forEach(element =>
-        {   
-    <div className="circle-category" >
-    
-        {
-            element
-        }
- 
+    const [newRecipe, setNewRecipe] = useState({});
+    const [chosenCategory, setchosenCategory] = useState()
+    const handleChange = (event) => {
+        console.log(event.target.value)
+        setNewRecipe({ ...newRecipe, [event.target.name]: event.target.value });
+      };
+    const changeState = (event) => {  
+        setNewRecipe({ ...newRecipe, [event.target.name]: event.target.getAttribute('value')
+    });
+        setchosenCategory(event.target.id); 
+       };
+    const categoriesList = categoriesStore.categories?.map((category) => (
+
+        <div className="categorydiv">
+        <img className="Scrollcategoryimage"  src={category.image}  onClick={changeState }  name = "Category" value = {category._id} id={category.name}/>
+
+      <h5 style={{padding: "0px", margin: "0px" }}>{category.name}</h5>
+     
     </div>
-    
-        })
-        const handleChange = (event) => {
-            setNewRecipe({ ...newrecipe, [event.target.name]: event.target.value });
-          };
+      ));
+      
+      
         
         const handleSubmit = (event) => {
-
-            event.preventDefault();
-            recipeStore.CreateRecipe(newrecipe);
+        console.log(newRecipe, " added new recipe")
+          
+         recipeStore.createRecipe(newRecipe.Category,newRecipe);
+         event.preventDefault();
         }
   
     return (
@@ -45,14 +53,16 @@ function AddRecipe() {
       
     
 
-    <label style={{color : " #006d77"}} className="category-section" >Choose Your Categories </label>
-        
-        {categories}
+    <label style={{color : " #006d77"}} className="category-section" >Choose Your Categories: {chosenCategory} </label>
+   
+<div  className="Recipecategoriescarousel"  >
+{categoriesList}
+</div>
  
        
         
        <div>
-            <button className="add-btn" onSubmit={handleSubmit}>Submit</button>
+            <button className="add-btn" onClick={handleSubmit}>Submit</button>
             <button className="add-btn">Rest</button>
             </div>
         </div>

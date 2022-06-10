@@ -90,7 +90,7 @@ function AddRecipe() {
           <label style={{ color: " #006d77" }} className="category-section">
             Choose Your Categories: {chosenCategory}{" "}
           </label>
-          <IngredientsList />
+          <IngredientsList  recipe = {newRecipe} />
           
           <div>
             <button className="add-btn" onClick={handleSubmit}>

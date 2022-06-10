@@ -1,18 +1,31 @@
 /* Ingredient list */
 .ing-list-specs {
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+  /* box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-  margin-top: 85px;
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; */
+  /* margin-top: 85px;
   margin-left: 490px;
   margin-right: 490px;
   border-radius: 5px;
-  margin-bottom: 30px;
+  margin-bottom: 30px; */
 }
 
 .ing-scrol {
   overflow: auto;
   max-height: calc(100vh - calc(40vh));
+  text-align: left;
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
+  width: 100%;
+  height: 150px;
+  margin-bottom: 10px;
+  display: flex;
+
+
+  align-items: center;
+  overflow-x: hidden; 
+  overflow-y: scroll;
 }
 
 .ing-create {
@@ -32,7 +45,7 @@
 
 .ing-chcek {
   margin-bottom: 15px;
-  margin-left: 170px;
+  margin-left: 50px;
   text-align: right;
 }
 
@@ -172,8 +185,8 @@
   */
 
 .field {
-  --fieldBorderColor: #d1c4e9;
-  --fieldBorderColorActive: #673ab7;
+  --fieldBorderColor: #006d77;
+  --fieldBorderColorActive: #83c5be;
 }
 
 /* CSS */
@@ -216,4 +229,16 @@
 .button-7:active {
   background-color: #006d77;
   box-shadow: none;
+}
+.vertical-line {
+  border-left:2px solid #83c5be;
+  height: 100%;
+}
+.horizental-line {
+  margin-left: 40px;
+  border-bottom:2px solid #83c5be;
+ width: 300px;
+}
+.left-text{
+  text-align: left
 }

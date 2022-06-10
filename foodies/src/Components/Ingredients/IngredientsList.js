@@ -9,14 +9,20 @@ function IngredientsList() {
   ));
 
   return (
-    <div className="ing-list-specs">
-      <div className="ing-input">
+    <div className="ing-list-specs  feedback-input" style={{display : "flex"}}>
+      
+      
+
+      <div className="ing-scrol " style={{width : "70%"}}>
+        <div>{ingredientsList}</div>
+      </div>
+        
+      <div style={{width : "50%"}}>
+     
+      <div className="ing-input vertical-line">
         <CreateIngredientModal />
-        <h4>Choose Your Ingredients: </h4>
       </div>
 
-      <div className="ing-scrol">
-        <div>{ingredientsList}</div>
       </div>
     </div>
   );

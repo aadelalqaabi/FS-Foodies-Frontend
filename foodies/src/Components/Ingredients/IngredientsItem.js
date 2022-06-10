@@ -19,14 +19,16 @@ function IngredientsItem({ ingredient, recipe }) {
   };
 
   return (
-    <div>
+    <div className="">
+    <div className="left-text horizental-line ">
       <input
         className="ing-chcek"
         value={ingredient.name}
         type="checkbox"
         onChange={handleIngredients}
       />
-      <span className="ing-item">{ingredient.name}</span>
+      <span className="ing-item  ">{ingredient.name}</span>
+    </div>
     </div>
   );
 }

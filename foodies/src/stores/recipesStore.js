@@ -13,10 +13,8 @@ class RecipesStore {
       console.log(categoryId, " store: categoryId")
       const response = await instance.post(`/${categoryId}/recipes`, newRecipe);
       this.recipes.push(response.data);
-      console.log(response.data._id, "idddd")
-    //return response.data._id
     
-     
+ 
     } catch (error) {
       console.log(
         "🚀 ~ file: RecipeStore.js ~ line 16 ~ RecipeStore ~ createProduct= ~ error",

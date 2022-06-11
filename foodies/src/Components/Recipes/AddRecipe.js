@@ -4,14 +4,21 @@ import recipeStore from "../../stores/recipesStore";
 import categoriesStore from "../../stores/categoriesStore";
 import IngredientsList from "../Ingredients/IngredientsList";
 import swal from 'sweetalert2';
+import ingredientsStore from "../../stores/ingredientsStore";
+import CreateIngredientModal from "../Ingredients/CreateIngredientModal";
 
 function AddRecipe() {
   const [newRecipe, setNewRecipe] = useState({
-      
+    name: "",
+    image: "",
+    Category: "",
+  instructions: "jk",
+    ingredients: [],
     }
     );
   const [chosenCategory, setchosenCategory] = useState();
-
+let counter = 0
+let recipeid = ""
   const showAlert = () => {
     swal.fire({
         title: "Success",
@@ -20,9 +27,44 @@ function AddRecipe() {
         confirmButtonText: "OK",
       });
 }
+// ingredientsLists
+const addIngredient = []
+const handleIngredients = (event) => {
+  if(event.target.checked)
+ {
+ //addIngredient.push(event.target.id);
+ console.log(event.target.value, "value")
+ console.log(event.target.id, "id")
+ newRecipe.ingredients.push(event.target.id)
+
+
+//recipeStore.updateingredient(event.target.value, '629f8da29345f307a0224d92',event.target.id)
+console.log(event.target.value, "ingredient added ")
+ }
+    
+};
+
+const ingredientsList = ingredientsStore.ingredients.map((ingredient) => (
+  <div >
+  <div className="left-text horizental-line ">
+    <input
+      className="ing-chcek"
+      value={ingredient.name}
+      id = {ingredient._id}
+      type="checkbox"
+      onChange={handleIngredients}
+    />
+    <span className="ing-item  ">{ingredient.name}</span>
+  </div>
+  </div>
+));
+
+
+
+
+
 
   const handleChange = (event) => {
-    //console.log(event.target.value);
 
     setNewRecipe({ ...newRecipe, [event.target.name]: event.target.value });
 
@@ -34,7 +76,7 @@ function AddRecipe() {
     });
     console.log(newRecipe)
     setchosenCategory(event.target.id);
-    createRecipe()
+    //createRecipe()
   
   }
 
@@ -66,12 +108,16 @@ function AddRecipe() {
   ));
 
  
-  const handleSubmit = (event) => {
-    console.log(recipeid, " update recipe id");
-    recipeStore.updateRecipe(newRecipe, recipeid);
-    console.log(newRecipe, " added new recipe");
-   // recipeStore.createRecipe(newRecipe.Category, newRecipe);
+  const handleSubmit = async (event) => {
+   await setNewRecipe({
+  ...newRecipe,
+  ["ingredients"]: addIngredient,
+})
+  
+   recipeStore.createRecipe(newRecipe.Category, newRecipe);
     showAlert()
+  
+    counter = counter + 1
     event.preventDefault();
   };
 
@@ -126,9 +172,24 @@ function AddRecipe() {
           <label style={{ color: " #006d77" }} className="category-section">
             Choose Your Categories: {chosenCategory}{" "}
           </label>
-          <IngredientsList  recipe ={recipeid} />
-          
+          <div className="ing-list-specs  feedback-input" style={{display : "flex"}}>
+      
+      
+
+      <div className="ing-scrol " style={{width : "70%"}}>
+        <div>{ingredientsList}</div>
+      </div>
+        
+      <div style={{width : "50%"}}>
+     
+      <div className="ing-input vertical-line">
+        <CreateIngredientModal />
+      </div>
+
+      </div>
+    </div>
           <div>
+            
             <button className="add-btn" onClick={handleSubmit}>
               Submit
             </button>

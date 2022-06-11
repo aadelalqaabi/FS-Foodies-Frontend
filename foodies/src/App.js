@@ -12,7 +12,6 @@ import SignOutButton from "./Components/users/SignOutButton";
 import ProfilePage from "./Components/users/ProfilePage";
 import authStore from "./stores/authStore";
 
-
 function App() {
   return (
     <div>
@@ -23,9 +22,12 @@ function App() {
         <Route path="/signUp" element={<SignUpModal />} />
         <Route path="/signIn" element={<SignInModal />} />
         <Route path="/user-page" element={<ProfilePage />} />
+        <Route path="/:recipeId/ingredients" element={<IngredientsList />} />
+
       </Routes>
     </div>
   );
 }
+
 
 export default App;

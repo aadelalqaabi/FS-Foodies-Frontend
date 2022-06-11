@@ -3,6 +3,7 @@ import { observer } from "mobx-react";
 import recipeStore from "../../stores/recipesStore";
 import categoriesStore from "../../stores/categoriesStore";
 import IngredientsList from "../Ingredients/IngredientsList";
+import swal from 'sweetalert2';
 
 function AddRecipe() {
   const [newRecipe, setNewRecipe] = useState({
@@ -10,8 +11,16 @@ function AddRecipe() {
     }
     );
   const [chosenCategory, setchosenCategory] = useState();
-let counter = 1
-let recipeid = ''
+
+  const showAlert = () => {
+    swal.fire({
+        title: "Success",
+        text: "Recipe has been added",
+        icon: "success",
+        confirmButtonText: "OK",
+      });
+}
+
   const handleChange = (event) => {
     //console.log(event.target.value);
 
@@ -56,10 +65,13 @@ let recipeid = ''
     </div>
   ));
 
+ 
   const handleSubmit = (event) => {
-    console.log(newRecipe, " update");
     console.log(recipeid, " update recipe id");
     recipeStore.updateRecipe(newRecipe, recipeid);
+    console.log(newRecipe, " added new recipe");
+   // recipeStore.createRecipe(newRecipe.Category, newRecipe);
+    showAlert()
     event.preventDefault();
   };
 

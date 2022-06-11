@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { observer } from "mobx-react";
 import recipeStore from "../../stores/recipesStore";
 import categoriesStore from "../../stores/categoriesStore";
-import RecipeCategoryScroll from "../Recipes/RecipeCategoryScroll";
 import IngredientsList from "../Ingredients/IngredientsList";
 
 function AddRecipe() {
@@ -28,6 +27,7 @@ function AddRecipe() {
         name="Category"
         value={category._id}
         id={category.name}
+        alt="category"
       />
 
       <h5 style={{ padding: "0px", margin: "0px" }}>{category.name}</h5>
@@ -59,6 +59,7 @@ function AddRecipe() {
           <label style={{ color: " #006d77" }} className="category-section">
             Recipe image
           </label>
+
           <input
             className="feedback-input"
             id="image"
@@ -81,10 +82,15 @@ function AddRecipe() {
           />
 
           <label style={{ color: " #006d77" }} className="category-section">
-            Choose Your Categories: {chosenCategory}{" "}
+            Choose Your Categories: {chosenCategory}
           </label>
 
           <div className="Recipecategoriescarousel">{categoriesList}</div>
+
+          <label style={{ color: " #006d77" }} className="category-section">
+            Choose Your Categories: {chosenCategory}{" "}
+          </label>
+          <IngredientsList recipe={newRecipe} />
 
           <div>
             <button className="add-btn" onClick={handleSubmit}>
@@ -94,9 +100,7 @@ function AddRecipe() {
           </div>
         </div>
       </div>
-      <div>
-        <IngredientsList />
-      </div>
+      <div></div>
     </div>
   );
 }

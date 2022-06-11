@@ -13,7 +13,7 @@ function Nav() {
     <nav>
       <div className="nav">
         <div>
-          <NavLink className="navitem" to="/home">
+          <NavLink className="navitem" to="/Home">
             Home
           </NavLink>
         </div>
@@ -24,32 +24,31 @@ function Nav() {
         </div>
         <div className="navitem-right">
           <div>
-            {
-              authStore.user ? (
-                    <>
-                      <NavLink className="navitem " to="/user-page">
-                        <img src="" />
-                        {authStore.user.username}'s Profile
-                      </NavLink>
-                  
-                      <NavLink className="navitem " to="/recipe">
-                        Add Recipe
-                      </NavLink>
-                      
-                      <SignOutButton />
-                    </>
-                  ) : ( // if user is null(not logged in) add signup/signin buttons ==> if user is not null(logged in) remove signup/signin buttons
-                    <>
-                      <NavLink className="navitem " to="/signUp">
-                        Sign Up
-                      </NavLink>
-                    
-                      <NavLink className="navitem " to="/signIn">
-                        Sign In
-                      </NavLink>
-                    </>
-              )
-            } 
+            {authStore.user ? (
+              <>
+                <NavLink className="navitem " to="/user-page">
+                  <img src="" />
+                  {authStore.user.username}'s Profile
+                </NavLink>
+
+                <NavLink className="navitem " to="/recipe">
+                  Add Recipe
+                </NavLink>
+
+                <SignOutButton />
+              </>
+            ) : (
+              // if user is null(not logged in) add signup/signin buttons ==> if user is not null(logged in) remove signup/signin buttons
+              <>
+                <NavLink className="navitem " to="/signUp">
+                  Sign Up
+                </NavLink>
+
+                <NavLink className="navitem " to="/signIn">
+                  Sign In
+                </NavLink>
+              </>
+            )}
           </div>
         </div>
       </div>

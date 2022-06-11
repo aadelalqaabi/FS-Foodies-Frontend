@@ -1,8 +1,9 @@
-import { useState } from "react";
 import { observer } from "mobx-react";
 //import { Button, Form, Row, Stack } from "react-bootstrap";
 import categoriesStore from "../../stores/categoriesStore";
 import CategoryItem from "./CategoryItem";
+import CategoryModal from "./CategoryModal";
+import authStore from "../../stores/authStore";
 
 function CategoriesList() {
   const categoriesList = categoriesStore.categories?.map((category) => (
@@ -10,12 +11,15 @@ function CategoriesList() {
   ));
 
   return (
-    <div className="container" style={{width : "70%"}}>
-    <div className="categorycontainer" >
-      <h1 className="categorytitle">Choose a category</h1>
-      <div className="categoriescarousel">{categoriesList}</div>
-      <button className="categorysubmit">Next</button>
-    </div>
+    <div className="center">
+      <div className="container" style={{ width: "70%" }}>
+        <div className="categorycontainer">
+          <h1 className="categorytitle">Choose a category</h1>
+          {authStore.user ? <CategoryModal /> : <></>}
+
+          <div className="categoriescarousel">{categoriesList}</div>
+        </div>
+      </div>
     </div>
   );
 }

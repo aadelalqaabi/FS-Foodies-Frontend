@@ -1,5 +1,8 @@
 @import "./Style/ingredients.css";
-@import "./Style/nav.css";
-@import "./Style/Categories.css";
-@import "./Style/AddRecipe.css";
+@import './Style/nav.css';
+@import './Style/Categories.css';
+@import './Style/AddRecipe.css';
+@import './Style/recipeItem.css';
+@import './Style/RecipePage.css';
 @import "./Style/user.css";
+

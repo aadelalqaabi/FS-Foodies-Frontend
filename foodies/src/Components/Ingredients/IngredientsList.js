@@ -3,10 +3,11 @@ import { observer } from "mobx-react";
 import IngredientsItem from "../Ingredients/IngredientsItem";
 import CreateIngredientModal from "../Ingredients/CreateIngredientModal";
 
-function IngredientsList(recipe) {
+function IngredientsList({recipe}) {
+  console.log(recipe,"listt")
 
   const ingredientsList = ingredientsStore.ingredients.map((ingredient) => (
-    <IngredientsItem  key={ingredient._id} ingredient={ingredient}  recipe = {recipe} />
+    <IngredientsItem  key={ingredient._id}  ingredient={ingredient} recipe = {recipe}    />
   ));
 
   return (

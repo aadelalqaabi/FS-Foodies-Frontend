@@ -4,27 +4,98 @@ import recipeStore from "../../stores/recipesStore";
 import categoriesStore from "../../stores/categoriesStore";
 import IngredientsList from "../Ingredients/IngredientsList";
 import ingredientStore from "../../stores/ingredientsStore";
+import swal from 'sweetalert2';
+import ingredientsStore from "../../stores/ingredientsStore";
+import CreateIngredientModal from "../Ingredients/CreateIngredientModal";
+
 
 function AddRecipe() {
-  const [newRecipe, setNewRecipe] = useState({});
+  const [newRecipe, setNewRecipe] = useState({
+    
+    name: "",
+    image: "",
+    Category: "62a1083cfec85909b25d827d",
+  instructions: "jk",
+    ingredients: [],
+    }
+    );
   const [chosenCategory, setchosenCategory] = useState();
-  let ingredients = [];
-  const handleIngredient = (data) => {
-    ingredients.push(data);
-  };
+
+let counter = 0
+let recipeid = ""
+  const showAlert = () => {
+    swal.fire({
+        title: "Success",
+        text: "Recipe has been added",
+        icon: "success",
+        confirmButtonText: "OK",
+      });
+}
+// ingredientsLists
+const addIngredient = []
+const handleIngredients = (event) => {
+  if(event.target.checked)
+ {
+ //addIngredient.push(event.target.id);
+ console.log(event.target.value, "value")
+ console.log(event.target.id, "id")
+ newRecipe.ingredients.push(event.target.id)
+
+
+//recipeStore.updateingredient(event.target.value, '629f8da29345f307a0224d92',event.target.id)
+console.log(event.target.value, "ingredient added ")
+ }
+    
+};
+
+const ingredientsList = ingredientsStore.ingredients.map((ingredient) => (
+  <div >
+  <div className="left-text horizental-line ">
+    <input
+      className="ing-chcek"
+      value={ingredient.name}
+      id = {ingredient._id}
+      type="checkbox"
+      onChange={handleIngredients}
+    />
+    <span className="ing-item  ">{ingredient.name}</span>
+  </div>
+  </div>
+));
+
+
+
+
+
 
   const handleChange = (event) => {
+
     setNewRecipe({ ...newRecipe, [event.target.name]: event.target.value });
 
-    console.log(event.target.value);
+
   };
   const changeState = (event) => {
     setNewRecipe({
       ...newRecipe,
       [event.target.name]: event.target.getAttribute("value"),
     });
+    console.log(newRecipe)
     setchosenCategory(event.target.id);
+    //createRecipe()
+  
+  }
+
+  const createRecipe = () =>
+  {
+    if (counter === 1)
+    {
+   
+   recipeid = recipeStore.createRecipe(newRecipe.Category, newRecipe);
+   console.log(recipeid, " added new recipe");
+    }
+    counter = counter + 1
   };
+
 
   const categoriesList = categoriesStore.categories?.map((category) => (
     <div className="categorydiv">
@@ -36,25 +107,36 @@ function AddRecipe() {
         name="Category"
         value={category._id}
         id={category.name}
-        alt="category"
       />
 
       <h5 style={{ padding: "0px", margin: "0px" }}>{category.name}</h5>
     </div>
   ));
 
-  const handleSubmit = (event) => {
-    console.log(ingredients);
-    setNewRecipe({ ...newRecipe, ingredients: ingredients });
-    recipeStore.createRecipe(newRecipe.Category, newRecipe);
+ 
+  const handleSubmit = async (event) => {
+   await setNewRecipe({
+  ...newRecipe,
+  ["ingredients"]: addIngredient,
+})
+  
+   recipeStore.createRecipe(newRecipe.Category, newRecipe);
+    showAlert()
+  
+    counter = counter + 1
+
     event.preventDefault();
   };
 
   return (
     <div>
+
       <div className=" center ">
         <div className="container">
-          <h1 className="createnewrecipetitle">Create New Recipe</h1>
+
+       
+          <h1 style={{ color: " #006d77" }}>Create New Recipe</h1>
+
 
           <label style={{ color: " #000000" }} className="category-section">
             Recipe Name
@@ -69,7 +151,6 @@ function AddRecipe() {
           <label style={{ color: " #000000" }} className="category-section">
             Recipe image
           </label>
-
           <input
             className="feedback-input"
             id="image"
@@ -91,44 +172,31 @@ function AddRecipe() {
             onChange={handleChange}
           />
 
-          <label style={{ color: " #000000" }} className="category-section">
-            Choose your categories: {chosenCategory}
+
+          <label style={{ color: " #006d77" }} className="category-section">
+            Choose Your Categories: {chosenCategory}{" "}
           </label>
 
-          <div className="recipecategoriescarousel">{categoriesList}</div>
-
-          <label style={{ color: " #000000" }} className="category-section">
-            Choose your ingredients:
+          <div className="Recipecategoriescarousel">{categoriesList}</div>
+        
+          <label style={{ color: " #006d77" }} className="category-section">
+            Choose Your Categories: {chosenCategory}{" "}
           </label>
+          <div className="ing-list-specs  feedback-input" style={{display : "flex"}}>
+      
+      
+      <div className="ing-scrol " style={{width : "70%"}}>
+        <div>{ingredientsList}</div>
+      </div>
+        
+      <div style={{width : "50%"}}>
+     
+      <div className="ing-input vertical-line">
+        <CreateIngredientModal />
+      </div>
 
-          <div className="ingredientcontainerdiv">
-            <div className="oldingredientcontainerdiv">
-              {ingredientStore.ingredients?.map((ingredient) => (
-                <div className="ingredientcontainer">
-                  <h1 id="ingredient" style={{ color: "white" }}>
-                    {ingredient.name}
-                  </h1>
-                  <button
-                    onClick={(event) => {
-                      handleIngredient(ingredient.name);
-                    }}
-                  >
-                    Add
-                  </button>
-                </div>
-              ))}
-            </div>
-
-            <div className="ingredientcontainer">
-              {ingredients.map((ingredient) => (
-                <div className="newingredientcontainerdiv">
-                  <h1>{ingredient}</h1>
-                  <button>Remove</button>
-                </div>
-              ))}
-            </div>
-          </div>
-
+      </div>
+    </div>
           <div>
             <button className="add-btn" onClick={handleSubmit}>
               Submit
@@ -137,7 +205,9 @@ function AddRecipe() {
           </div>
         </div>
       </div>
-      <div></div>
+      <div>
+       
+      </div>
     </div>
   );
 }

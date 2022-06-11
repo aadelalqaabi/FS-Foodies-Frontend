@@ -12,16 +12,22 @@ function RecipePage() {
   );
   return (
     <div className="center">
-      <div className="container">
+      <div className="singlecontainer">
         <div className="singlerecipetitles">
           <h1 className="singlerecipename">{recipe?.name}</h1>
           <h1 className="singlecategoryname">{foundCategory?.name}</h1>
         </div>
         <img src={recipe?.image} className="singlerecipeimage"></img>
+        <h1 className="instructionstitle">Instructions</h1>
         <p className="singlerecipeinstruction">{recipe?.instructions}</p>
-        {recipe.ingredients?.map((ingredient) => (
-          <h1 className="singleingredient">{ingredient?.name}</h1>
-        ))}
+        <h1 className="instructionstitle">Ingredients</h1>
+        <div className="singleingredientdiv">
+          <ul>
+            {recipe?.ingredients?.map((ingredient) => (
+              <li className="singleingredient">{ingredient?.name}</li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );

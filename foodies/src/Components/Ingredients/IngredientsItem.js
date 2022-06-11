@@ -1,19 +1,26 @@
 import { useState } from "react";
 import { useParams } from "react-router";
-import recipesStore from "../../stores/recipesStore";
-function IngredientsItem({ ingredient,recipe }) {
-  console.log(recipe.name, "1111recipeeeee")
+import recipeStore from "../../stores/recipesStore";
 
-  const [addIngredient, setAddIngredient] = useState(
-    recipe
-  );
+function IngredientsItem({ ingredient, recipe }) {
+ 
 
+  const addIngredient = []
   const handleIngredients = (event) => {
-        const ingredientArr = addIngredient;
-        console.log("")
-        ingredientArr.ingredients.push(ingredient._id);
-        setAddIngredient(ingredientArr);
-        recipesStore.updateRecipe(addIngredient, recipe._id, ingredient._id)
+    if(event.target.checked)
+   {
+    console.log(recipe, "ID recipeeeee")
+   //addIngredient.push(event.target.id);
+   console.log(event.target.value, "value")
+   console.log(event.target.id, "id")
+  recipeStore.updateingredient(event.target.value, '629f8da29345f307a0224d92',event.target.id)
+  console.log(event.target.value, "ingredient added ")
+   }
+
+     
+     
+
+      
   };
 
   return (
@@ -22,6 +29,7 @@ function IngredientsItem({ ingredient,recipe }) {
       <input
         className="ing-chcek"
         value={ingredient.name}
+        id = {ingredient._id}
         type="checkbox"
         onChange={handleIngredients}
       />

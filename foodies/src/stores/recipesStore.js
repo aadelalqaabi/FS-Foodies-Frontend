@@ -13,6 +13,10 @@ class RecipesStore {
       console.log(categoryId, " store: categoryId")
       const response = await instance.post(`/${categoryId}/recipes`, newRecipe);
       this.recipes.push(response.data);
+      console.log(response.data._id, "idddd")
+    //return response.data._id
+    
+     
     } catch (error) {
       console.log(
         "🚀 ~ file: RecipeStore.js ~ line 16 ~ RecipeStore ~ createProduct= ~ error",
@@ -30,19 +34,36 @@ class RecipesStore {
     }
   };
 
-  updateRecipe = async (updatedRecipe, recipeId, ingredientId) => {
-    try {
-      const res = await instance.put(
-        `/${recipeId}/ingredients/${ingredientId}`,
-        updatedRecipe
-      );
-      this.recipes = this.recipes.map((recipe) =>
-        recipe._id === recipeId ? res.data : recipe
-      );
-    } catch (error) {
-      console.log("RecipeStore-> updatedRecipe-> error", error);
-    }
-  };
+ 
+updateingredient = async (recipeId, ingredientId) => {
+  try {
+    const res = await instance.put(
+      `/${recipeId}/ingredients/${ingredientId}`
+    );
+    this.recipes = this.recipes.map((recipe) =>
+      recipe._id === recipeId ? res.data : recipe
+    );
+  } catch (error) {
+    console.log("RecipeStore-> updatedRecipe-> error", error);
+  }
+};
+
+
+updateRecipe = async (updatedRecipe, recipeId) => {
+  try {
+
+    console.log(recipeId, updatedRecipe, "update /////")
+    const res = await instance.put(
+      `/${recipeId}`,updatedRecipe
+    );
+    console.log( res , "resssponse")
+    this.recipes = this.recipes.map((recipe) =>
+      recipe._id === recipeId ? res.data : recipe
+    );
+  } catch (error) {
+    console.log("RecipeStore-> updatedRecipe-> error", error);
+  }
+};
 }
 
 const recipesStore = new RecipesStore();

@@ -5,19 +5,42 @@ import categoriesStore from "../../stores/categoriesStore";
 import IngredientsList from "../Ingredients/IngredientsList";
 
 function AddRecipe() {
-  const [newRecipe, setNewRecipe] = useState({});
+  const [newRecipe, setNewRecipe] = useState({
+      
+    }
+    );
   const [chosenCategory, setchosenCategory] = useState();
+let counter = 1
+let recipeid = ''
   const handleChange = (event) => {
-    console.log(event.target.value);
+    //console.log(event.target.value);
+
     setNewRecipe({ ...newRecipe, [event.target.name]: event.target.value });
+
   };
   const changeState = (event) => {
     setNewRecipe({
       ...newRecipe,
       [event.target.name]: event.target.getAttribute("value"),
     });
+    console.log(newRecipe)
     setchosenCategory(event.target.id);
+    createRecipe()
+  
+  }
+
+  const createRecipe = () =>
+  {
+    if (counter === 1)
+    {
+   
+   recipeid = recipeStore.createRecipe(newRecipe.Category, newRecipe);
+   console.log(recipeid, " added new recipe");
+    }
+    counter = counter + 1
   };
+  
+
   const categoriesList = categoriesStore.categories?.map((category) => (
     <div className="categorydiv">
       <img
@@ -34,8 +57,9 @@ function AddRecipe() {
   ));
 
   const handleSubmit = (event) => {
-    console.log(newRecipe, " added new recipe");
-    recipeStore.createRecipe(newRecipe.Category, newRecipe);
+    console.log(newRecipe, " update");
+    console.log(recipeid, " update recipe id");
+    recipeStore.updateRecipe(newRecipe, recipeid);
     event.preventDefault();
   };
 
@@ -90,7 +114,7 @@ function AddRecipe() {
           <label style={{ color: " #006d77" }} className="category-section">
             Choose Your Categories: {chosenCategory}{" "}
           </label>
-          <IngredientsList  recipe = {newRecipe} />
+          <IngredientsList  recipe ={recipeid} />
           
           <div>
             <button className="add-btn" onClick={handleSubmit}>

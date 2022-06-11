@@ -8,12 +8,14 @@ import RecipePage from "./Components/Recipes/RecipePage";
 import SignUpModal from "./Components/users/SignUpModal";
 import SignInModal from "./Components/users/SignInModal";
 import ProfilePage from "./Components/users/ProfilePage";
+import Home from "./Home";
 
 function App() {
   return (
     <div>
       <Nav />
       <Routes>
+        <Route path="/Home" element={<Home />} />
         <Route path="/CategoriesList" element={<CategoriesList />}></Route>
         <Route
           path="/RecipesList/:categoryId"

@@ -1,3 +1,4 @@
+import { observer } from "mobx-react";
 import { useState } from "react";
 import { useParams } from "react-router";
 import recipesStore from "../../stores/recipesStore";
@@ -31,4 +32,4 @@ function IngredientsItem({ ingredient, recipe }) {
   );
 }
 
-export default IngredientsItem;
+export default observer(IngredientsItem);

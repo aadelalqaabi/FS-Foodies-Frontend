@@ -27,6 +27,13 @@ class CategoriesStore {
       console.log("CategoriesStore -> fetchCategories -> error", error);
     }
   };
+
+  findCategoryName = (categoryId) => {
+    const category = this.categories?.find(
+      (category) => categoryId === category?._id
+    );
+    return category;
+  };
 }
 
 const categoriesStore = new CategoriesStore();

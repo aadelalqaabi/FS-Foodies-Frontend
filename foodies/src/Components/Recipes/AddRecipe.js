@@ -59,6 +59,7 @@ function AddRecipe() {
           <label style={{ color: " #006d77" }} className="category-section">
             Recipe image
           </label>
+
           <input
             className="feedback-input"
             id="image"
@@ -81,7 +82,7 @@ function AddRecipe() {
           />
 
           <label style={{ color: " #006d77" }} className="category-section">
-            Choose Your Categories: {chosenCategory}{" "}
+            Choose Your Categories: {chosenCategory}
           </label>
 
           <div className="Recipecategoriescarousel">{categoriesList}</div>

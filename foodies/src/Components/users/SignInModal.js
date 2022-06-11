@@ -1,25 +1,31 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import authStore from '../../stores/authStore';
+import { useNavigate } from "react-router-dom";
 
 function SignInModal() {
+    const nav = useNavigate();
   const [user, setUser] = useState();
 
   const handleChange = (event) =>
     setUser({ ...user, [event.target.name]: event.target.value });
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    authStore.signIn(user);
-    // if(user === null)
-  };
+  
+    try {
+      await authStore.signIn(user);
+      nav("/user-page");
+    } catch (e) {
+      alert(e.message);
+    }
+  }
+  
 
   return (
 
     <div /*className='user-specs'*/>
-        <div class="background">
-            <div class="shape"></div>
-            <div class="shape"></div>
-        </div>
+        <div class="background"></div>
         <form className='form-style' onSubmit={handleSubmit}>
             <div>
                 <label className='label-style'>
@@ -39,11 +45,13 @@ function SignInModal() {
                         onChange={handleChange}
                     />
                 </label>
-                <input
-                    className="button-sign ing-create"
-                    type="submit"
-                    value="Sign In"
-                />
+                {/* <Link to="/home"> */}
+                    <input
+                        className="button-sign ing-create"
+                        type="submit"
+                        value="Sign In"
+                    />
+                {/* </Link> */}
             </div>
         </form>
     </div>
@@ -51,3 +59,19 @@ function SignInModal() {
 }
 
 export default SignInModal;
+
+
+
+// check this later
+
+// async function handleSubmit(event) {
+//     event.preventDefault();
+  
+//     try {
+//       await Auth.signIn(email, password);
+//       userHasAuthenticated(true);
+//       nav("/");
+//     } catch (e) {
+//       alert(e.message);
+//     }
+//   }

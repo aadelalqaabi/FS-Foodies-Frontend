@@ -51,6 +51,18 @@ class AuthStore {
     localStorage.removeItem("myToken");
     delete instance.defaults.headers.common.Authorization;
   };
+
+  updateUser = async (updatedUser, userId, recipeId) => {
+    try {
+      const res = await instance.put(
+        `/${userId}/recipes/${recipeId}`,
+        updatedUser
+      );
+      this.user = res.data;
+    } catch (error) {
+      console.log("RecipeStore-> updatedRecipe-> error", error);
+    }
+  };
 }
 
 const authStore = new AuthStore();

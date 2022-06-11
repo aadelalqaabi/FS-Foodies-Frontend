@@ -1,16 +1,24 @@
 import { useState } from 'react';
 import authStore from '../../stores/authStore';
+import { useNavigate } from "react-router-dom";
 
 function SignUpModal() {
+    const nav = useNavigate();
   const [user, setUser] = useState();
 
   const handleChange = (event) =>
     setUser({ ...user, [event.target.name]: event.target.value });
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    authStore.signUp(user);
-  };
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+      
+        try {
+          await authStore.signUp(user);
+          nav("/user-page");
+        } catch (e) {
+          alert(e.message);
+        }
+    };
 
 return(
 

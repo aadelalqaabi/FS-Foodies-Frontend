@@ -11,6 +11,7 @@ import SignInModal from "./Components/users/SignInModal";
 import SignOutButton from "./Components/users/SignOutButton";
 import ProfilePage from "./Components/users/ProfilePage";
 import authStore from "./stores/authStore";
+import HomePage from "./Components/HomePage";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path="/signUp" element={<SignUpModal />} />
         <Route path="/signIn" element={<SignInModal />} />
         <Route path="/user-page" element={<ProfilePage />} />
+        <Route path="/home" element={<HomePage />} />
       </Routes>
     </div>
   );

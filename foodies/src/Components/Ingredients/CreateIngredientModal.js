@@ -18,7 +18,7 @@ function CreateIngredientModal() {
   };
 
   return (
-    <div>
+    <div >
       <form onSubmit={handleSubmit}>
         <div>
           <label className="field field_v1">
@@ -36,7 +36,7 @@ function CreateIngredientModal() {
           <input
             className="button-7 ing-create"
             type="submit"
-            value="Add Ingredient"
+            value="+"
           />
         </div>
       </form>

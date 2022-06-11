@@ -3,13 +3,20 @@ import { observer } from "mobx-react";
 import recipeStore from "../../stores/recipesStore";
 import categoriesStore from "../../stores/categoriesStore";
 import IngredientsList from "../Ingredients/IngredientsList";
+import ingredientStore from "../../stores/ingredientsStore";
 
 function AddRecipe() {
   const [newRecipe, setNewRecipe] = useState({});
   const [chosenCategory, setchosenCategory] = useState();
+  let ingredients = [];
+  const handleIngredient = (data) => {
+    ingredients.push(data);
+  };
+
   const handleChange = (event) => {
-    console.log(event.target.value);
     setNewRecipe({ ...newRecipe, [event.target.name]: event.target.value });
+
+    console.log(event.target.value);
   };
   const changeState = (event) => {
     setNewRecipe({
@@ -18,9 +25,11 @@ function AddRecipe() {
     });
     setchosenCategory(event.target.id);
   };
+
   const categoriesList = categoriesStore.categories?.map((category) => (
     <div className="categorydiv">
       <img
+        tabindex="1"
         className="Scrollcategoryimage"
         src={category.image}
         onClick={changeState}
@@ -35,7 +44,8 @@ function AddRecipe() {
   ));
 
   const handleSubmit = (event) => {
-    console.log(newRecipe, " added new recipe");
+    console.log(ingredients);
+    setNewRecipe({ ...newRecipe, ingredients: ingredients });
     recipeStore.createRecipe(newRecipe.Category, newRecipe);
     event.preventDefault();
   };
@@ -44,9 +54,9 @@ function AddRecipe() {
     <div>
       <div className=" center ">
         <div className="container">
-          <h1 style={{ color: " #006d77" }}>Create New Recipe</h1>
+          <h1 className="createnewrecipetitle">Create New Recipe</h1>
 
-          <label style={{ color: " #006d77" }} className="category-section">
+          <label style={{ color: " #000000" }} className="category-section">
             Recipe Name
           </label>
           <input
@@ -56,7 +66,7 @@ function AddRecipe() {
             name="name"
             onChange={handleChange}
           />
-          <label style={{ color: " #006d77" }} className="category-section">
+          <label style={{ color: " #000000" }} className="category-section">
             Recipe image
           </label>
 
@@ -68,7 +78,7 @@ function AddRecipe() {
             onChange={handleChange}
           />
 
-          <label style={{ color: " #006d77" }} className="category-section">
+          <label style={{ color: " #000000" }} className="category-section">
             Write the Recipe instructions{" "}
           </label>
           <textarea
@@ -81,22 +91,49 @@ function AddRecipe() {
             onChange={handleChange}
           />
 
-          <label style={{ color: " #006d77" }} className="category-section">
-            Choose Your Categories: {chosenCategory}
+          <label style={{ color: " #000000" }} className="category-section">
+            Choose your categories: {chosenCategory}
           </label>
 
-          <div className="Recipecategoriescarousel">{categoriesList}</div>
+          <div className="recipecategoriescarousel">{categoriesList}</div>
 
-          <label style={{ color: " #006d77" }} className="category-section">
-            Choose Your Categories: {chosenCategory}{" "}
+          <label style={{ color: " #000000" }} className="category-section">
+            Choose your ingredients:
           </label>
-          <IngredientsList recipe={newRecipe} />
+
+          <div className="ingredientcontainerdiv">
+            <div className="oldingredientcontainerdiv">
+              {ingredientStore.ingredients?.map((ingredient) => (
+                <div className="ingredientcontainer">
+                  <h1 id="ingredient" style={{ color: "white" }}>
+                    {ingredient.name}
+                  </h1>
+                  <button
+                    onClick={(event) => {
+                      handleIngredient(ingredient.name);
+                    }}
+                  >
+                    Add
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            <div className="ingredientcontainer">
+              {ingredients.map((ingredient) => (
+                <div className="newingredientcontainerdiv">
+                  <h1>{ingredient}</h1>
+                  <button>Remove</button>
+                </div>
+              ))}
+            </div>
+          </div>
 
           <div>
             <button className="add-btn" onClick={handleSubmit}>
               Submit
             </button>
-            <button className="add-btn">Rest</button>
+            <button className="add-btn">Reset</button>
           </div>
         </div>
       </div>

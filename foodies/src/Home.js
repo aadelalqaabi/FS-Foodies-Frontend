@@ -10,9 +10,7 @@ function Home() {
   return (
     <div>
       <div className="center">
-        <div className="container" style={{ width: "70%" }}>
-          <h1>Welcome to Taste</h1>
-        </div>
+        <h1 className="Welcome">Welcome to Taste</h1>
       </div>
       <div className="center">
         <div className="container" style={{ width: "70%" }}>

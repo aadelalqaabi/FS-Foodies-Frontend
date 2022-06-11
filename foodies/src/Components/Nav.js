@@ -1,10 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-// import logo from "/Users/bodouralrashidi/Desktop/FullStack/MiniProject/FS-Library/fs-library/src/ArchiveLogo-removebg-preview.png";
-import SignUpModal from "./users/SignUpModal";
-import SignInModal from "./users/SignInModal";
 import SignOutButton from "./users/SignOutButton";
-import ProfilePage from "./users/ProfilePage";
 import authStore from "../stores/authStore";
 import { observer } from "mobx-react";
 
@@ -23,7 +19,7 @@ function Nav() {
           </NavLink>
         </div>
         <div className="navitem-right">
-          <div>
+          <div className="userbuttons">
             {authStore.user ? (
               <>
                 <NavLink className="navitem " to="/user-page">

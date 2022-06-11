@@ -8,19 +8,15 @@ import RecipePage from "./Components/Recipes/RecipePage";
 import SignUpModal from "./Components/users/SignUpModal";
 import SignInModal from "./Components/users/SignInModal";
 import ProfilePage from "./Components/users/ProfilePage";
-<<<<<<< HEAD
-import authStore from "./stores/authStore";
 import HomePage from "./Components/HomePage";
-
-=======
 import Home from "./Home";
->>>>>>> origin/main
 
 function App() {
   return (
     <div>
       <Nav />
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/Home" element={<Home />} />
         <Route path="/CategoriesList" element={<CategoriesList />}></Route>
         <Route

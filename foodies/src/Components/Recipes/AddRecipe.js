@@ -27,6 +27,7 @@ function AddRecipe() {
         name="Category"
         value={category._id}
         id={category.name}
+        alt="category"
       />
 
       <h5 style={{ padding: "0px", margin: "0px" }}>{category.name}</h5>
@@ -41,10 +42,8 @@ function AddRecipe() {
 
   return (
     <div>
-
       <div className=" center ">
         <div className="container">
-       
           <h1 style={{ color: " #006d77" }}>Create New Recipe</h1>
 
           <label style={{ color: " #006d77" }} className="category-section">
@@ -87,12 +86,12 @@ function AddRecipe() {
           </label>
 
           <div className="Recipecategoriescarousel">{categoriesList}</div>
-        
+
           <label style={{ color: " #006d77" }} className="category-section">
             Choose Your Categories: {chosenCategory}{" "}
           </label>
-          <IngredientsList  recipe = {newRecipe} />
-          
+          <IngredientsList recipe={newRecipe} />
+
           <div>
             <button className="add-btn" onClick={handleSubmit}>
               Submit
@@ -101,9 +100,7 @@ function AddRecipe() {
           </div>
         </div>
       </div>
-      <div>
-       
-      </div>
+      <div></div>
     </div>
   );
 }

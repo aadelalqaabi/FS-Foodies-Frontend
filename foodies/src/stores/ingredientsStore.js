@@ -31,8 +31,13 @@ class IngredientsStore {
     }
   };
 
+  findIngredientName = (ingredientId) => {
+    const ingredient = this.ingredients?.find(
+      (ingredient) => ingredientId === ingredient?._id
+    );
+    return ingredient;
+  };
 }
-
 
 const ingredientStore = new IngredientsStore();
 ingredientStore.fetchIngredients();

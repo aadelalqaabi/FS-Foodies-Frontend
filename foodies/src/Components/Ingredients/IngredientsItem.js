@@ -18,10 +18,6 @@ function IngredientsItem({ ingredient, recipe }) {
   console.log(event.target.value, "ingredient added ")
    }
 
-     
-     
-
-      
   };
 
   return (

@@ -1,6 +1,7 @@
 import { observer } from "mobx-react";
 import { useParams } from "react-router";
 import categoriesStore from "../../stores/categoriesStore";
+import ingredientStore from "../../stores/ingredientsStore";
 import recipesStore from "../../stores/recipesStore";
 
 function RecipePage() {
@@ -24,7 +25,9 @@ function RecipePage() {
         <div className="singleingredientdiv">
           <ul>
             {recipe?.ingredients?.map((ingredient) => (
-              <li className="singleingredient">{ingredient?.name}</li>
+              <li className="singleingredient">
+                {ingredientStore.findIngredientName(ingredient).name}
+              </li>
             ))}
           </ul>
         </div>

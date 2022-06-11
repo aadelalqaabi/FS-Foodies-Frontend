@@ -9,9 +9,10 @@ import CreateIngredientModal from "../Ingredients/CreateIngredientModal";
 
 function AddRecipe() {
   const [newRecipe, setNewRecipe] = useState({
+    
     name: "",
     image: "",
-    Category: "",
+    Category: "62a1083cfec85909b25d827d",
   instructions: "jk",
     ingredients: [],
     }
@@ -101,7 +102,6 @@ const ingredientsList = ingredientsStore.ingredients.map((ingredient) => (
         name="Category"
         value={category._id}
         id={category.name}
-        alt="category"
       />
 
       <h5 style={{ padding: "0px", margin: "0px" }}>{category.name}</h5>
@@ -124,8 +124,10 @@ const ingredientsList = ingredientsStore.ingredients.map((ingredient) => (
 
   return (
     <div>
+
       <div className=" center ">
         <div className="container">
+       
           <h1 style={{ color: " #006d77" }}>Create New Recipe</h1>
 
           <label style={{ color: " #006d77" }} className="category-section">
@@ -141,7 +143,6 @@ const ingredientsList = ingredientsStore.ingredients.map((ingredient) => (
           <label style={{ color: " #006d77" }} className="category-section">
             Recipe image
           </label>
-
           <input
             className="feedback-input"
             id="image"
@@ -164,18 +165,31 @@ const ingredientsList = ingredientsStore.ingredients.map((ingredient) => (
           />
 
           <label style={{ color: " #006d77" }} className="category-section">
-            Choose Your Categories: {chosenCategory}
+            Choose Your Categories: {chosenCategory}{" "}
           </label>
 
           <div className="Recipecategoriescarousel">{categoriesList}</div>
-
+        
           <label style={{ color: " #006d77" }} className="category-section">
             Choose Your Categories: {chosenCategory}{" "}
           </label>
-          <IngredientsList recipe={newRecipe} />
+          <div className="ing-list-specs  feedback-input" style={{display : "flex"}}>
+      
+      
 
+      <div className="ing-scrol " style={{width : "70%"}}>
+        <div>{ingredientsList}</div>
+      </div>
+        
+      <div style={{width : "50%"}}>
+     
+      <div className="ing-input vertical-line">
+        <CreateIngredientModal />
+      </div>
+
+      </div>
+    </div>
           <div>
-            
             <button className="add-btn" onClick={handleSubmit}>
               Submit
             </button>
@@ -183,7 +197,9 @@ const ingredientsList = ingredientsStore.ingredients.map((ingredient) => (
           </div>
         </div>
       </div>
-      <div></div>
+      <div>
+       
+      </div>
     </div>
   );
 }

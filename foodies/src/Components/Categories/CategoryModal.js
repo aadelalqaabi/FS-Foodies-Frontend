@@ -1,48 +1,91 @@
-import { Button, Form } from "react-bootstrap";
 import React, { useState } from "react";
-import ingredientsStore from "../../stores/ingredientsStore";
+import categoriesStore from "../../stores/categoriesStore";
 
 function CreateIngredientModal() {
-  const [addIngredient, setAddIngredient] = useState({ name: "" });
+  const [addCategory, setAddCategory] = useState({ name: "", image: "" });
+  const [toggle, setToggle] = useState(false);
+  const [Close, setClose] = useState(true);
 
   const handleChange = (event) => {
-    setAddIngredient({
-      ...addIngredient,
+    setAddCategory({
+      ...addCategory,
       [event.target.name]: event.target.value,
     });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    ingredientsStore.createIngredient(addIngredient);
+    categoriesStore.createCategories(addCategory);
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label className="field field_v1">
-            <input
-              className="field__input"
-              type="text"
-              placeholder="Add New Ingredient"
-              name="name"
-              onChange={handleChange}
-            />
-            <span className="field__label-wrap">
-              <span className="field__label">Add New Ingredient</span>
-            </span>
-          </label>
-          <input
-            className="button-7 ing-create"
-            type="submit"
-            value="Add Ingredient"
-          />
-        </div>
-      </form>
+      <button
+        onClick={() => {
+          setToggle(true);
+          setClose(true);
+        }}
+        className="addCategory"
+      >
+        Add new
+      </button>
+      {toggle ? (
+        Close ? (
+          <div className="categorytoggle">
+            <form
+              onSubmit={(event) => {
+                handleSubmit(event);
+                setToggle(false);
+              }}
+            >
+              <div className="togglecontainer">
+                <h1>Add New Category</h1>
+                <div className="Inputcategorydiv">
+                  <input
+                    onChange={handleChange}
+                    className="Inputcategoryfeild"
+                    type="text"
+                    name="image"
+                    placeholder="Category image"
+                  />
+                </div>
+                <div className="Inputcategorydiv">
+                  <input
+                    onChange={handleChange}
+                    id="name"
+                    className="Inputcategoryfeild"
+                    type="text"
+                    name="name"
+                    placeholder="Category name"
+                  />
+                </div>
+                <div className="inputcategorybuttons">
+                  <input
+                    className="Inputcategorysubmit"
+                    value="submit"
+                    type="submit"
+                  />
+                  <button
+                    className="Inputcategoryclose"
+                    onClick={() => {
+                      setClose(false);
+                      setToggle(true);
+                    }}
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        ) : (
+          false
+        )
+      ) : (
+        true
+      )}
     </div>
   );
 }
 
 export default CreateIngredientModal;
-

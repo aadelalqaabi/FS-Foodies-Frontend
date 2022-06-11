@@ -146,6 +146,14 @@
   text-align: center;
 } */
 
+.userbuttons{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  font-size: 20px;
+  width: 100%;
+}
+
 .background {
   width: 430px;
   height: 520px;

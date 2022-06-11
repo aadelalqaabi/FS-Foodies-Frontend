@@ -22,6 +22,7 @@ function App() {
     <div>
       <Nav />
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/Home" element={<Home />} />
         <Route path="/CategoriesList" element={<CategoriesList />}></Route>
         <Route

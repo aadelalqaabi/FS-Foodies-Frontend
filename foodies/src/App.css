@@ -6,3 +6,11 @@
 @import './Style/RecipePage.css';
 @import "./Style/user.css";
 
+body{
+    background-color: #35373b;
+}
+.Welcome{
+    color: #ffff;
+    font-size: 50px;
+    font-family: sans-serif;
+}

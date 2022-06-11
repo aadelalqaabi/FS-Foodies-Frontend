@@ -4,11 +4,15 @@
   justify-content: center;
   text-align: center;
 }
+.createnewrecipetitle{
+  color: #000000;
+  margin: 30px;
+}
 .add-btn {
 
 appearance: button;
 backface-visibility: hidden;
-background-color: #83c5be;
+background-color: #35373b;
 border-radius: 6px;
 border-width: 0;
 box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset,rgba(50, 50, 93, .1) 0 2px 5px 0,rgba(0, 0, 0, .07) 0 1px 1px 0;
@@ -49,8 +53,9 @@ box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .2) 0 6px 15p
 }
 .container
 {
-  border-radius: 10px;
+  border-radius: 20px;
   background-color:#ffffff;
+
   margin: 30px;
   padding-left:100px;
   padding-right:100px;
@@ -68,7 +73,7 @@ font-size: 18px;
 border-radius: 5px;
 line-height: 22px;
 background-color: transparent;
-border:2px solid #83c5be;
+border:2px solid #000000;
 transition: all 0.3s;
 padding: 13px;
 margin-bottom: 15px;
@@ -76,7 +81,7 @@ width:100%;
 box-sizing: border-box;
 outline:0;
 }
-.feedback-input:focus { border:2px solid #83c5be; }
+.feedback-input:focus { border:2px solid #000000; }
 
 .category-section {
 color:rgb(0, 0, 0);
@@ -93,6 +98,18 @@ width:100%;
 box-sizing: border-box;
 outline:0;
 text-align: left;
+}
+
+.recipecategoriescarousel{
+  text-align: center;
+  width: 100%;
+  height: fit-content;
+  margin: 30px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  overflow: scroll;
 }
 
 .circle-category
@@ -113,18 +130,15 @@ padding: 10px
   object-fit: cover;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 10px;
 }
+.Scrollcategoryimage:focus {
+  border:4px solid #39ace7;
+}
 .Scrollcategoryimage:hover{
-  opacity: 50%;
+  opacity: 60%;
   cursor:pointer;
-  border:8px solid #6ec200;
-  transition: 0.4s;
+  transition: 0.2s;
 }
-.Scrollcategoryimage:target {
-  opacity: 50%;
-  
-  border:8px solid #6ec200;
- 
-}
+
 
 .Recipecategoriescarousel{
   padding: 0px;
@@ -152,3 +166,23 @@ padding: 10px
 scrollbar-width: none;  /* Firefox */
 }
 
+.ingredientcontainerdiv{
+  display: flex;
+  flex-direction: row;
+}
+.ingredientcontainer{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: #000000;
+  flex-direction: row;
+}
+
+.oldingredientcontainerdiv{
+  display: flex;
+  flex-direction: column;
+}
+.newingredientcontainerdiv{
+  display: flex;
+  flex-direction: column;
+}

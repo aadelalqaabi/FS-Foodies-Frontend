@@ -3,9 +3,11 @@ import { observer } from "mobx-react";
 import recipeStore from "../../stores/recipesStore";
 import categoriesStore from "../../stores/categoriesStore";
 import IngredientsList from "../Ingredients/IngredientsList";
+import ingredientStore from "../../stores/ingredientsStore";
 import swal from 'sweetalert2';
 import ingredientsStore from "../../stores/ingredientsStore";
 import CreateIngredientModal from "../Ingredients/CreateIngredientModal";
+
 
 function AddRecipe() {
   const [newRecipe, setNewRecipe] = useState({
@@ -18,6 +20,7 @@ function AddRecipe() {
     }
     );
   const [chosenCategory, setchosenCategory] = useState();
+
 let counter = 0
 let recipeid = ""
   const showAlert = () => {
@@ -69,6 +72,7 @@ const ingredientsList = ingredientsStore.ingredients.map((ingredient) => (
 
     setNewRecipe({ ...newRecipe, [event.target.name]: event.target.value });
 
+
   };
   const changeState = (event) => {
     setNewRecipe({
@@ -91,11 +95,12 @@ const ingredientsList = ingredientsStore.ingredients.map((ingredient) => (
     }
     counter = counter + 1
   };
-  
+
 
   const categoriesList = categoriesStore.categories?.map((category) => (
     <div className="categorydiv">
       <img
+        tabindex="1"
         className="Scrollcategoryimage"
         src={category.image}
         onClick={changeState}
@@ -119,6 +124,7 @@ const ingredientsList = ingredientsStore.ingredients.map((ingredient) => (
     showAlert()
   
     counter = counter + 1
+
     event.preventDefault();
   };
 
@@ -127,10 +133,12 @@ const ingredientsList = ingredientsStore.ingredients.map((ingredient) => (
 
       <div className=" center ">
         <div className="container">
+
        
           <h1 style={{ color: " #006d77" }}>Create New Recipe</h1>
 
-          <label style={{ color: " #006d77" }} className="category-section">
+
+          <label style={{ color: " #000000" }} className="category-section">
             Recipe Name
           </label>
           <input
@@ -140,7 +148,7 @@ const ingredientsList = ingredientsStore.ingredients.map((ingredient) => (
             name="name"
             onChange={handleChange}
           />
-          <label style={{ color: " #006d77" }} className="category-section">
+          <label style={{ color: " #000000" }} className="category-section">
             Recipe image
           </label>
           <input
@@ -151,7 +159,7 @@ const ingredientsList = ingredientsStore.ingredients.map((ingredient) => (
             onChange={handleChange}
           />
 
-          <label style={{ color: " #006d77" }} className="category-section">
+          <label style={{ color: " #000000" }} className="category-section">
             Write the Recipe instructions{" "}
           </label>
           <textarea
@@ -163,6 +171,7 @@ const ingredientsList = ingredientsStore.ingredients.map((ingredient) => (
             name="instructions"
             onChange={handleChange}
           />
+
 
           <label style={{ color: " #006d77" }} className="category-section">
             Choose Your Categories: {chosenCategory}{" "}
@@ -176,7 +185,6 @@ const ingredientsList = ingredientsStore.ingredients.map((ingredient) => (
           <div className="ing-list-specs  feedback-input" style={{display : "flex"}}>
       
       
-
       <div className="ing-scrol " style={{width : "70%"}}>
         <div>{ingredientsList}</div>
       </div>
@@ -193,7 +201,7 @@ const ingredientsList = ingredientsStore.ingredients.map((ingredient) => (
             <button className="add-btn" onClick={handleSubmit}>
               Submit
             </button>
-            <button className="add-btn">Rest</button>
+            <button className="add-btn">Reset</button>
           </div>
         </div>
       </div>

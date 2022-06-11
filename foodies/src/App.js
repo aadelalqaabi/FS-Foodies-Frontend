@@ -8,7 +8,13 @@ import RecipePage from "./Components/Recipes/RecipePage";
 import SignUpModal from "./Components/users/SignUpModal";
 import SignInModal from "./Components/users/SignInModal";
 import ProfilePage from "./Components/users/ProfilePage";
+<<<<<<< HEAD
+import authStore from "./stores/authStore";
+import HomePage from "./Components/HomePage";
+
+=======
 import Home from "./Home";
+>>>>>>> origin/main
 
 function App() {
   return (
@@ -26,6 +32,7 @@ function App() {
         <Route path="/signUp" element={<SignUpModal />} />
         <Route path="/signIn" element={<SignInModal />} />
         <Route path="/user-page" element={<ProfilePage />} />
+        <Route path="/home" element={<HomePage />} />
       </Routes>
     </div>
   );

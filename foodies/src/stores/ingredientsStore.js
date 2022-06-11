@@ -30,7 +30,9 @@ class IngredientsStore {
       console.log("IngredientsStore -> fetchIngredients -> error", error);
     }
   };
+
 }
+
 
 const ingredientStore = new IngredientsStore();
 ingredientStore.fetchIngredients();

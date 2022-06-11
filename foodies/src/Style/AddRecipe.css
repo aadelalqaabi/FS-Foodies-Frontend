@@ -52,13 +52,12 @@ box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .2) 0 6px 15p
 }
 .container
 {
-background-color:#ffffff;
-
-margin: 30px;
-padding-left:100px;
-padding-right:100px;
-display: flex;
-flex-direction : column;
+  background-color:#ffffff;
+  margin: 30px;
+  padding-left:100px;
+  padding-right:100px;
+  display: flex;
+  flex-direction : column;
   width: 50%;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }

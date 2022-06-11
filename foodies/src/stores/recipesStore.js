@@ -9,9 +9,9 @@ class RecipesStore {
 
   createRecipe = async (categoryId, newRecipe) => {
     try {
-      console.log(newRecipe, " store: new recipe")
-      console.log(categoryId, " store: categoryId")
+      console.log(categoryId, " store: categoryId");
       const response = await instance.post(`/${categoryId}/recipes`, newRecipe);
+      console.log(response.data, " store: response.data");
       this.recipes.push(response.data);
     } catch (error) {
       console.log(
@@ -42,6 +42,11 @@ class RecipesStore {
     } catch (error) {
       console.log("RecipeStore-> updatedRecipe-> error", error);
     }
+  };
+
+  findRecipeName = (recipeId) => {
+    const recipe = this.recipes?.find((recipe) => recipeId === recipe?._id);
+    return recipe;
   };
 }
 

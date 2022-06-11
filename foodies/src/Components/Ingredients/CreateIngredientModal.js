@@ -45,13 +45,4 @@ function CreateIngredientModal() {
 }
 
 export default CreateIngredientModal;
-{
-  /* <form onSubmit={handleSubmit}>
-            <div className="form__group field">
-                <input className="form__field" type="text" placeholder="Add New Ingredient" name="name" onChange={handleChange} />
-                <label for="name" className="form__label">Add New Ingredient</label>
-                <input className="ing-create" type="submit" value="Add Ingredient" />
-            </div>
-            
-        </form> */
-}
+

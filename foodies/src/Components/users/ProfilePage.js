@@ -17,10 +17,6 @@ function ProfilePage() {
               </div>
           </div>
             
-{/* 
-            <button onClick={handleIngredients}>
-                add
-            </button> */}
       </div>
   );
 }

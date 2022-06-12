@@ -14,10 +14,11 @@
   font-size: 20px;
 }
 .navitem {
+  width: auto;
   text-decoration: none;
   color: #aaa6a6;
   font-weight: bold;
-  margin-right: 15px;
+  margin-right: 10px;
   border: 2px rgb(255, 255, 255);
 }
 .navitem:hover {

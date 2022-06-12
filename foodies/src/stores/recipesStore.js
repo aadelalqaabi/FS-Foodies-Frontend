@@ -6,7 +6,7 @@ class RecipesStore {
     makeAutoObservable(this);
   }
   recipes = [];
-
+ CurrentUser = {}
   createRecipe = async (categoryId, newRecipe) => {
     try {
       console.log(categoryId, " store: categoryId");
@@ -46,6 +46,7 @@ class RecipesStore {
 
   findRecipeName = (recipeId) => {
     const recipe = this.recipes?.find((recipe) => recipeId === recipe?._id);
+    console.log(recipe, "store name recipe")
     return recipe;
   };
 
@@ -74,6 +75,24 @@ class RecipesStore {
       console.log("RecipeStore-> updatedRecipe-> error", error);
     }
   };
+
+getUserInfo = async (userId) => {
+  try {
+    const res = await instance.get(`/users` );
+    console.log(res.data)
+  
+    res.data.forEach((user) => {
+    if( user._id === userId )
+    {
+      this.CurrentUser = user
+      console.log(user , "we found the user")
+    }})
+   
+  }
+ catch (error) {
+    console.log("RecipeStore-> updatedRecipe-> error", error);
+  }
+};
 }
 
 const recipesStore = new RecipesStore();

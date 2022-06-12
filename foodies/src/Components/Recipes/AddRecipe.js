@@ -111,17 +111,22 @@ function AddRecipe() {
     });
 
     await recipeStore.createRecipe(newRecipe.Category, newRecipe);
-    showAlert();
+    
     recipeid = recipeStore.recipes[recipeStore.recipes.length - 1]._id;
-    addToUser(recipeid);
+    await addToUser(recipeid);
+
+    showAlert();
     event.preventDefault();
   };
 
-  const addToUser = () => {
+  const addToUser =  async () => {
     const rec = addRec;
     rec.recipes.push(recipeid);
     setAddRec(rec);
-    authStore.updateUser(
+    console.log("user id :" , rec)
+    console.log("user recipe :" ,  addRec[recipeStore.recipes.length - 1])
+
+    await authStore.updateUser(
       addRec[recipeStore.recipes.length - 1],
       rec.id,
       recipeid

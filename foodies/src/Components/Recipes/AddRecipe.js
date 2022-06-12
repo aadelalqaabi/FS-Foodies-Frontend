@@ -7,9 +7,12 @@ import ingredientStore from "../../stores/ingredientsStore";
 import swal from 'sweetalert2';
 import ingredientsStore from "../../stores/ingredientsStore";
 import CreateIngredientModal from "../Ingredients/CreateIngredientModal";
+import authStore from "../../stores/authStore";
 
 
 function AddRecipe() {
+  const [addRec, setAddRec] = useState(authStore.user);
+  const [recName, setRecName] = useState("");
   const [newRecipe, setNewRecipe] = useState({
     
     name: "",
@@ -71,6 +74,9 @@ const ingredientsList = ingredientsStore.ingredients.map((ingredient) => (
   const handleChange = (event) => {
 
     setNewRecipe({ ...newRecipe, [event.target.name]: event.target.value });
+    if(event.target.name === "name"){
+      setRecName(event.target.value);
+    }
 
 
   };
@@ -122,11 +128,18 @@ const ingredientsList = ingredientsStore.ingredients.map((ingredient) => (
   
    recipeStore.createRecipe(newRecipe.Category, newRecipe);
     showAlert()
-  
-    counter = counter + 1
-
+    recipeid = recipeStore.recipes[recipeStore.recipes.length -1]._id
+    addToUser(recipeid);
     event.preventDefault();
   };
+
+  const addToUser = () => {
+    // const recipe = recipeStore.recipes.find(recipe => recipe._ === recipeid);
+    const rec = addRec;
+    rec.recipes.push(recipeid);
+    setAddRec(rec);
+    authStore.updateUser(addRec, rec.id, recipeid);
+  }
 
   return (
     <div>

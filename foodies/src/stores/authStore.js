@@ -58,7 +58,6 @@ class AuthStore {
         `/${userId}/recipes/${recipeId}`,
         updatedUser
       );
-      this.user = res.data;
     } catch (error) {
       console.log("RecipeStore-> updatedRecipe-> error", error);
     }
